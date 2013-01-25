@@ -15,7 +15,7 @@ class Hero extends GameEntity {
    */
   Hero(Game game, num x, num y) : super.withPosition(game, x, y) {
     sprite = game.assetManager.getAsset('img/normale_sprite.gif');
-    animation = new Animation(sprite, 22, 0.05, loop:true);
+    animation = new Animation(sprite, 18, 0.05, loop:true);
   }
 
   /**
@@ -24,14 +24,33 @@ class Hero extends GameEntity {
   void update() {
     //Kann gleichzeitig nach oben und links gehen aber nicht links und rechts
       if(left){
-        print(left);
+        if(sprite.id != "left"){
+          sprite = game.assetManager.getAsset('img/left_sprite.gif');
+          sprite.id = "left";
+          animation = new Animation(sprite, 22, 0.05, loop:true);
+        }
         x-=speed;
       }else if(right){
+        if(sprite.id != "right"){
+          sprite = game.assetManager.getAsset('img/right_sprite.gif');
+          sprite.id = "right";
+          animation = new Animation(sprite, 22, 0.05, loop:true);
+        }
         x+=speed;
       }
       if(up){
+        if(sprite.id != "up"){
+          sprite = game.assetManager.getAsset('img/up_sprite.gif');
+          sprite.id = "up";
+          animation = new Animation(sprite, 22, 0.05, loop:true);
+        }
         y-=speed;
       }else if(down){
+        if(sprite.id != "down"){
+          sprite = game.assetManager.getAsset('img/down_sprite.gif');
+          sprite.id = "down";
+          animation = new Animation(sprite, 22, 0.05, loop:true);
+        }
         y+=speed;
       }
   }
@@ -54,29 +73,19 @@ class Hero extends GameEntity {
    */
   void changeDirectionOfEntity(int direction){
     //Links
-    print("change");
     if(direction == 1){
-      sprite = game.assetManager.getAsset('img/left_sprite.gif');
-      animation = new Animation(sprite, 22, 0.05, loop:true);
       left = true;
       //Rechts
     }else if(direction == 2){
-      sprite = game.assetManager.getAsset('img/right_sprite.gif');
-      animation = new Animation(sprite, 22, 0.05, loop:true);
       right = true;
       //Hoch
     }else if(direction == 3){
-      sprite = game.assetManager.getAsset('img/up_sprite.gif');
-      animation = new Animation(sprite, 22, 0.05, loop:true);
       up = true;
       //Runter
     }else if(direction == 4){
-      sprite = game.assetManager.getAsset('img/down_sprite.gif');
-      animation = new Animation(sprite, 22, 0.05, loop:true);
       down = true;
     }else{
-      sprite = game.assetManager.getAsset('img/normale_sprite.gif');
-      animation = new Animation(sprite, 22, 0.05, loop:true);
+
     }
   }
   
@@ -92,6 +101,11 @@ class Hero extends GameEntity {
       up = false;
     }else if(direction == 4){
       down = false;
+    }
+    if(!left && !right && !up && !down){
+      sprite = game.assetManager.getAsset('img/normale_sprite.gif');
+      sprite.id = "normale";
+      animation = new Animation(sprite, 18, 0.05, loop:true);
     }
   }
 }

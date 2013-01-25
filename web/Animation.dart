@@ -16,12 +16,9 @@ class Animation {
   }
 
   void drawFrame(tick, ctx, x, y, [scaleBy = 1]) {
-    //print(tick);
-    //print(totalTime);
-
     elapsedTime += tick;
 
-    if (true) {
+    if (loop) {
         if (isDone()) {
             elapsedTime = 0;
         }
@@ -29,8 +26,6 @@ class Animation {
         return;
     }
     num index = currentFrame();
-
-    //print(index);
 
     num locX = x - (frameWidth/2) * scaleBy;
     num locY = y - (frameHeight/2) * scaleBy;
@@ -47,10 +42,6 @@ class Animation {
   }
 
   num currentFrame() {
-    //print(frameDuration);
-
-    //print(elapsedTime);
-
     return (elapsedTime / frameDuration).floor();
   }
 }
