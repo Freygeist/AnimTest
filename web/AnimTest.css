@@ -1,3 +1,8 @@
+body {
+  background-color:lightgrey;
+  }
+
 #canvas {
   border:1px solid red;
+  background-color:lightgrey;
   }
