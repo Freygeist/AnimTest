@@ -1,4 +1,4 @@
-part of bad_aliens;
+part of anim_test;
 
 class AssetManager {
   int successCount = 0;
@@ -17,14 +17,14 @@ class AssetManager {
 
     for (final path in downloadQueue) {
       var img = new ImageElement();
-      img.onLoad.listen((event) {
+      img.on.load.add((event) {       
         print('${img.src} is loaded');
         successCount += 1;
         if (isDone()) {
             downloadCallback();
         }
       });
-      img.onError.listen((event) {
+      img.on.error.add((event) {
         errorCount += 1;
         if (isDone()) {
             downloadCallback();

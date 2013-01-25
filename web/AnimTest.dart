@@ -1,10 +1,16 @@
-library bad_aliens;
+library anim_test;
 
 import 'dart:html';
+import 'dart:core';
 import 'dart:math' as Math;
 
 part 'AssetManager.dart';
-
+part 'Game.dart';
+part 'GameEntity.dart';
+part 'Point.dart';
+part 'Hero.dart';
+part 'Timer.dart';
+part 'Animation.dart';
 
 void main(){
   CanvasElement canvas = query('#canvas');
@@ -13,12 +19,18 @@ void main(){
 
   //assetmanager für bilder
   var assetManager = new AssetManager();
-  assetManager.queueDownload('img/left_sprite.png');
+  assetManager.queueDownload('img/left_sprite.gif');
+  assetManager.queueDownload('img/right_sprite.gif');
+  assetManager.queueDownload('img/up_sprite.gif');
+  assetManager.queueDownload('img/down_sprite.gif');
+  assetManager.queueDownload('img/normale_sprite.gif');
 
+  var game = new Game(assetManager);
 
-  //aufbauen einer neuen gameEntity
-  //initalisieren des spiels
-  //starten des spiel loops
+  assetManager.downloadAll(() {
+    game.init(ctx);
+    game.start();
+  });
 
 
 }
