@@ -1,0 +1,5 @@
+name:  AnimTest
+description:  Animation testing in dart
+
+dependencies:
+  browser: any
