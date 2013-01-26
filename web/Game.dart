@@ -2,7 +2,9 @@ part of anim_test;
 
 class Game {
 
-  List entities = [];
+  List entitiesLayer1 = [];
+  List entitiesLayer2 = [];
+  List entitiesLayer3 = [];
   CanvasRenderingContext2D ctx;
   Timer timer = new Timer();
   num clockTick;
@@ -28,7 +30,7 @@ class Game {
     initListener();
     
     //Muss als erstes zur Entitylist hinzugefügt werden!!
-    addEntity(new Hero(this, 160, 160));
+    addEntity(new Hero(this, 160, 160), 2);
 
     print('game initialized');
   }
@@ -71,19 +73,19 @@ class Game {
     switch(event.keyCode) {
       case 37:
         print('left!');
-        entities[0].changeDirectionOfEntity(1);
+        entitiesLayer2[0].changeDirectionOfEntity(1);
         break;
       case 39:
         print('right!');
-        entities[0].changeDirectionOfEntity(2);
+        entitiesLayer2[0].changeDirectionOfEntity(2);
         break;
       case 38:
         print('up!');
-        entities[0].changeDirectionOfEntity(3);
+        entitiesLayer2[0].changeDirectionOfEntity(3);
         break;
       case 40:
         print('down!');
-        entities[0].changeDirectionOfEntity(4);
+        entitiesLayer2[0].changeDirectionOfEntity(4);
         break;
       default:
         print('${event.keyCode}');
@@ -98,19 +100,19 @@ class Game {
     switch(event.keyCode) {
       case 37:
         print('left!');
-        entities[0].releaseKey(1);
+        entitiesLayer2[0].releaseKey(1);
         break;
       case 39:
         print('right!');
-        entities[0].releaseKey(2);
+        entitiesLayer2[0].releaseKey(2);
         break;
       case 38:
         print('up!');
-        entities[0].releaseKey(3);
+        entitiesLayer2[0].releaseKey(3);
         break;
       case 40:
         print('down!');
-        entities[0].releaseKey(4);
+        entitiesLayer2[0].releaseKey(4);
         break;
       default:
         print('${event.keyCode}');
@@ -120,9 +122,26 @@ class Game {
 
   /**
    * Fügt ein Objekt der Liste an Entitäten im Spiel hinzu
+   * 
+   * @param entity: Das Objekt
+   * 
+   * @param layer: Das Layer auf welches das Objekt gezeichnet werden soll (1,2,3)
    */
-  void addEntity(GameEntity entity) {
-    entities.add(entity);
+  void addEntity(GameEntity entity, int layer) {
+    switch(layer){
+      case 1:
+        entitiesLayer1.add(entity);
+        break;
+      case 2:
+        entitiesLayer2.add(entity);
+        break;
+      case 3:
+        entitiesLayer3.add(entity);
+        break;
+      default:
+        print("No valid Layer!");
+        break;
+    }
   }
 
   /**
@@ -131,8 +150,14 @@ class Game {
   void draw() {
     ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     ctx.save();
-    for (final GameEntity entity in entities) {
-      entity.drawOutlines(ctx);
+    for (final GameEntity entity in entitiesLayer1) {
+      entity.draw(ctx);
+    }
+    for (final GameEntity entity in entitiesLayer2) {
+      entity.draw(ctx);
+    }
+    for (final GameEntity entity in entitiesLayer3) {
+      entity.draw(ctx);
     }
     drawBeforeCtxRestore();
     ctx.restore();
@@ -148,10 +173,10 @@ class Game {
    * Wenn nicht werden sie aus der Liste entfernt.
    */
   void update() {
-    num entitiesCount = entities.length;
+    num entitiesCount = entitiesLayer2.length;
 
     for (var i = 0; i < entitiesCount; i++) {
-      var entity = entities[i];
+      var entity = entitiesLayer2[i];
 
       //Wenn die Entity noch nicht entfernt wird, werden ihre Koordinaten
       //aktualisiert
@@ -161,10 +186,10 @@ class Game {
     }
 
     //Wenn eine Entity nicht mehr benötigt wird, wird sie gelöscht
-    for (var i = entities.length-1; i >= 0; --i) {
-      if (entities[i].removeFromWorld) {
+    for (var i = entitiesLayer2.length-1; i >= 0; --i) {
+      if (entitiesLayer2[i].removeFromWorld) {
         //Löscht eine Entity in der Liste vom Punkt 'i' bis zum Punkt 'i+1'
-        entities.removeRange(i, 1);
+        entitiesLayer2.removeRange(i, 1);
       }
     }
   }

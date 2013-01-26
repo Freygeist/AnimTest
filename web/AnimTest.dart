@@ -24,6 +24,7 @@ void main(){
   assetManager.queueDownload('img/up_sprite.gif');
   assetManager.queueDownload('img/down_sprite.gif');
   assetManager.queueDownload('img/normale_sprite.gif');
+  assetManager.queueDownload('img/grass.PNG');
 
   var game = new Game(assetManager);
 

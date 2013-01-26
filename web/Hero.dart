@@ -58,13 +58,13 @@ class Hero extends GameEntity {
   /**
    * Zeichnet den Helden
    */
-  void drawOutlines(ctx) {
+  void draw(ctx) {
     ctx.save();
     ctx.translate(x, y);
     ctx.translate(-x, -y);
     animation.drawFrame(game.clockTick, ctx, x, y);
     ctx.restore();
-    super.drawOutlines(ctx);
+    super.draw(ctx);
   }
   
   /**

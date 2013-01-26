@@ -30,7 +30,7 @@ class GameEntity {
   /**
    * Zeichnet einen grünen Bogen um die Enitity
    */
-  void drawOutlines(ctx) {
+  void draw(ctx) {
     if (game.showOutlines) {
       ctx.beginPath();
       ctx.strokeStyle = "green";
