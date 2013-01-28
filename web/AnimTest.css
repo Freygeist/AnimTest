@@ -1,8 +1,23 @@
 body {
-  background-color:lightgrey;
+  background:-webkit-gradient(radial, center center, 300, center center, 600, from(rgba(0,0,0,0)), to(rgba(0,0,0,1))), url('img/background.png') repeat, #000;
+  background-color:#4c584e;
+  background-repeat:repeat;
   }
 
 #canvas {
-  border:1px solid red;
-  background-color:lightgrey;
+  background-color:#25221d;
+  margin-top:18px;
+  margin-left:19px;
+}
+
+#background-canvas {
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-401px;
+  margin-left:-530px;
+  width:1060px;
+  height:803px;
+  background-image:url(img/background_canvas.png);
+  background-repeat:no-repeat;
   }
