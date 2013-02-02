@@ -3,7 +3,7 @@ library anim_test;
 import 'dart:html';
 import 'dart:core';
 import 'dart:math' as Math;
-import './Audio.dart';
+//import './Audio.dart';
 
 part 'AssetManager.dart';
 part 'Game.dart';
@@ -14,12 +14,12 @@ part 'Timer.dart';
 part 'Animation.dart';
 
 void main(){
-  Audio audio = new Audio();
-  audio.playMusic();
+  //Audio audio = new Audio();
+  //audio.playMusic();
 
   CanvasElement canvas = query('#canvas');
   var ctx = canvas.context2d;
-
+  ctx.webkitImageSmoothingEnabled = false;
 
   //assetmanager für bilder
   var assetManager = new AssetManager();
