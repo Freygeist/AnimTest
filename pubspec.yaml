@@ -3,3 +3,4 @@ description:  Animation testing in dart
 
 dependencies:
   browser: any
+  unittest: 0.3.4
