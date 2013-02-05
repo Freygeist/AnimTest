@@ -15,7 +15,7 @@ class Animation {
     totalTime = (spriteSheet.width / frameWidth) * frameDuration;
   }
 
-  void drawFrame(tick, ctx, x, y, [scaleBy = 1]) {
+  void drawFrame(tick, ctx, x, y, [scaleBy = 2]) {
     elapsedTime += tick;
 
     if (loop) {
